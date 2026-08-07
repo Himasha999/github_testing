@@ -7,6 +7,8 @@
   <title>Maison Rouge | Custom Flower Bouquets & Catalog</title>
   <meta name="description" content="Maison Rouge Atelier - Curated rose bouquets, hand-built custom arrangements.">
   <link rel="stylesheet" href="css/style.css">
+  <!-- Font Awesome CDN for High Quality Social Media Logos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body class="maison-catalog">
@@ -272,15 +274,41 @@
               Bouquet</h3>
 
             <!-- Visual Bouquet Composition Box -->
-            <div class="visual-bouquet-holder"
-              style="height: 320px; border-radius: 10px; overflow: hidden; border: 1px solid rgba(212, 175, 55, 0.3); margin: 1.5rem 0;">
+            <div id="visual-bouquet-box" class="visual-bouquet-holder" style="height: 320px; border-radius: 10px; overflow: hidden; border: 1px solid rgba(212, 175, 55, 0.3); margin: 1.5rem 0; position: relative;">
+              <!-- Default Background Image when empty -->
               <img id="main-preview-img" src="assets/images/signature_bouquet.jpg" alt="Custom Bouquet"
-                style="width: 100%; height: 100%; object-fit: cover;">
+                style="width: 100%; height: 100%; object-fit: cover; transition: opacity 0.4s ease;">
+
+              <!-- Dynamic Created Bouquet Stage Layering -->
+              <div id="custom-bouquet-stage" class="custom-bouquet-stage" style="display: none; position: absolute; inset: 0; pointer-events: none;">
+                
+                <span id="bouquet-count-badge" class="bouquet-badge-count">0 Stems</span>
+
+                <!-- Flowers Layer (Stems arranged visually) -->
+                <div id="stage-stems" class="stage-stems-container"></div>
+
+                <!-- Wrapping Material Layer (Luxury Wrap Cone) -->
+                <div class="stage-wrapper">
+                  <svg viewBox="0 0 220 200" preserveAspectRatio="none">
+                    <!-- Outer Wrap Flare -->
+                    <path id="svg-wrap-path" d="M 10,10 C 60,70 90,190 110,195 C 130,190 160,70 210,10 L 175,20 C 140,80 120,160 110,175 C 100,160 80,80 45,20 Z" fill="#8b0000" stroke="#d4af37" stroke-width="1.5"/>
+                    <!-- Inner Cone Shadow -->
+                    <path d="M 45,20 C 80,80 100,160 110,175 C 120,160 140,80 175,20 L 160,25 C 130,85 115,155 110,165 C 105,155 90,85 60,25 Z" fill="rgba(0,0,0,0.35)"/>
+                  </svg>
+                </div>
+
+                <!-- Silk Ribbon Knot Layer -->
+                <div id="stage-ribbon" class="stage-ribbon-knot">🎀</div>
+              </div>
             </div>
 
             <!-- Dynamic Breakdown Panel -->
             <div
               style="text-align: left; background: #1c0104; padding: 1.4rem; border-radius: 8px; font-size: 0.9rem; border: 1px solid rgba(212,175,55,0.2);">
+              <div style="margin-bottom: 0.6rem; color: rgba(255,255,255,0.75);">
+                <strong>Selected Categories:</strong>
+                <span id="preview-categories-list" style="color: var(--gold-accent); font-weight: 600;">None</span>
+              </div>
               <div style="margin-bottom: 0.6rem; color: rgba(255,255,255,0.75);">
                 <strong>Stems Selected:</strong>
                 <span id="preview-stems-list" style="color: #fff; font-weight: 500;">None selected</span>
@@ -306,6 +334,58 @@
 
         </div>
       </section>
+
+      <!-- Final Custom Bouquet Modal Presentation -->
+      <div id="final-bouquet-modal" class="modal-backdrop" style="display: none;">
+        <div class="modal-content" style="background: #250205; border: 2px solid var(--gold-accent); border-radius: 16px; color: #fff; max-width: 580px; text-align: center; box-shadow: 0 25px 70px rgba(0,0,0,0.9); padding: 2.5rem; position: relative;">
+          
+          <button id="close-final-modal" style="position: absolute; top: 15px; right: 20px; background: none; border: none; color: var(--gold-accent); font-size: 1.8rem; cursor: pointer;">&times;</button>
+
+          <span class="sub-tag" style="color: var(--gold-accent); letter-spacing: 3px;">Maison Rouge Masterpiece</span>
+          <h2 class="editorial-heading" style="font-size: 2.5rem; color: #fff; margin-bottom: 0.5rem;">Your Final Bespoke Bouquet 💐</h2>
+          <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-bottom: 1.5rem;">
+            Here is your custom crafted arrangement created from your selected flower categories, luxury wrapping, ribbon, and card note.
+          </p>
+
+          <!-- Modal Clustered Bouquet Preview Box -->
+          <div id="modal-bouquet-canvas" class="visual-bouquet-holder bouquet-bounce-active" style="height: 300px; border-radius: 12px; margin-bottom: 1.5rem; position: relative;">
+            <!-- Modal Stage Clone injected dynamically -->
+          </div>
+
+          <!-- Final Details Breakdown -->
+          <div style="background: #1c0104; border: 1px solid rgba(212,175,55,0.3); border-radius: 10px; padding: 1.2rem; text-align: left; font-size: 0.88rem; margin-bottom: 1.8rem;">
+            <div style="margin-bottom: 0.5rem; color: rgba(255,255,255,0.8);">
+              <strong>Flower Categories:</strong> <span id="modal-categories" style="color: var(--gold-accent); font-weight: 600;"></span>
+            </div>
+            <div style="margin-bottom: 0.5rem; color: rgba(255,255,255,0.8);">
+              <strong>Selected Stems:</strong> <span id="modal-stems-summary" style="color: #fff;"></span>
+            </div>
+            <div style="margin-bottom: 0.5rem; color: rgba(255,255,255,0.8);">
+              <strong>Luxury Wrapping:</strong> <span id="modal-wrapper-summary" style="color: var(--gold-accent);"></span>
+            </div>
+            <div style="margin-bottom: 0.5rem; color: rgba(255,255,255,0.8);">
+              <strong>Silk Ribbon:</strong> <span id="modal-ribbon-summary" style="color: var(--gold-accent);"></span>
+            </div>
+            <div id="modal-note-row" style="margin-bottom: 0.5rem; color: rgba(255,255,255,0.8); display: none;">
+              <strong>Gift Card Note:</strong> <span id="modal-note-summary" style="color: #fff; font-style: italic;"></span>
+            </div>
+            <div style="border-top: 1px dashed rgba(212,175,55,0.3); margin-top: 0.8rem; padding-top: 0.8rem; display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 1.1rem; color: #fff; font-weight: 600;">Total Investment:</span>
+              <span id="modal-total-price" style="font-size: 1.8rem; color: var(--gold-accent); font-weight: bold;"></span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem;">
+            <button id="modal-add-cart-btn" class="maison-btn maison-btn-gold" style="flex: 1; padding: 1rem; font-size: 0.85rem; letter-spacing: 2px;">
+              CONFIRM & ADD TO CART 🛒
+            </button>
+            <a href="cart.html" class="maison-btn" style="padding: 1rem 1.5rem; font-size: 0.85rem; border-color: var(--gold-accent); color: var(--gold-accent);">
+              VIEW CART
+            </a>
+          </div>
+
+        </div>
+      </div>
 
       <!-- Curated Collections Section -->
       <section id="collections" style="margin-bottom: 6rem; scroll-margin-top: 120px;">
@@ -384,13 +464,23 @@
           master florists.
         </p>
 
-        <!-- Social Media Buttons -->
-        <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 2.5rem;">
-          <a href="https://instagram.com" target="_blank" class="social-link" title="Instagram">📸</a>
-          <a href="https://pinterest.com" target="_blank" class="social-link" title="Pinterest">📌</a>
-          <a href="https://facebook.com" target="_blank" class="social-link" title="Facebook">📘</a>
-          <a href="https://behance.net" target="_blank" class="social-link" title="Behance Portfolio">🎨</a>
-          <a href="mailto:atelier@maisonrouge.com" class="social-link" title="Email Us">✉️</a>
+        <!-- Social Media Buttons (High-Quality Vector Logos) -->
+        <div style="display: flex; justify-content: center; gap: 1.2rem; margin-bottom: 2.5rem;">
+          <a href="https://instagram.com" target="_blank" class="social-link" title="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="https://pinterest.com" target="_blank" class="social-link" title="Pinterest">
+            <i class="fa-brands fa-pinterest-p"></i>
+          </a>
+          <a href="https://facebook.com" target="_blank" class="social-link" title="Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a href="https://behance.net" target="_blank" class="social-link" title="Behance Portfolio">
+            <i class="fa-brands fa-behance"></i>
+          </a>
+          <a href="mailto:atelier@maisonrouge.com" class="social-link" title="Email Us">
+            <i class="fa-solid fa-envelope"></i>
+          </a>
         </div>
 
         <div
@@ -430,14 +520,69 @@
       const wrapperSelect = document.getElementById('maison-wrapper-select');
       const ribbonSelect = document.getElementById('maison-ribbon-select');
 
-      // State
-      let selectedStemsData = {};
+      const visualBox = document.getElementById('visual-bouquet-box');
+      const customStage = document.getElementById('custom-bouquet-stage');
+      const stageStemsContainer = document.getElementById('stage-stems');
+      const svgWrapPath = document.getElementById('svg-wrap-path');
+      const stageRibbon = document.getElementById('stage-ribbon');
+      const countBadge = document.getElementById('bouquet-count-badge');
 
-      function updateLivePreview() {
+      // Wrapper color mapping
+      const wrapperColors = {
+        '🔴 Velvet Crimson Red Wrapping': '#8b0000',
+        '🖤 Matte Midnight Black Wrapping': '#1c1c1c',
+        '⚪ Pristine Pearl White Wrapping': '#e0e0e0',
+        '🤎 Vintage Eco Kraft Brown Wrapping': '#6d4c41',
+        '💜 Luxury Royal Purple Wrapping': '#4a148c'
+      };
+
+      // Ribbon knot icons
+      const ribbonIcons = {
+        '✨ Metallic Gold Silk Ribbon': '🎀✨',
+        '🔴 Deep Crimson Red Velvet Ribbon': '🎀🔴',
+        '🌸 Soft Blush Pink Satin Ribbon': '🎀🌸',
+        '⚪ Ivory Cream Satin Ribbon': '🎀⚪',
+        '💜 Royal Orchid Purple Ribbon': '🎀💜'
+      };
+
+      // Realistic flower & leaf positions for lush bouquet dome arrangement
+      const flowerPositions = [
+        { top: '35px', left: '115px', rotate: 0 },
+        { top: '25px', left: '75px', rotate: -15 },
+        { top: '25px', left: '155px', rotate: 15 },
+        { top: '65px', left: '45px', rotate: -30 },
+        { top: '65px', left: '185px', rotate: 30 },
+        { top: '60px', left: '115px', rotate: 5 },
+        { top: '105px', left: '70px', rotate: -20 },
+        { top: '105px', left: '160px', rotate: 20 },
+        { top: '95px', left: '115px', rotate: -10 },
+        { top: '45px', left: '20px', rotate: -40 },
+        { top: '45px', left: '210px', rotate: 40 },
+        { top: '135px', left: '90px', rotate: -12 },
+        { top: '135px', left: '140px', rotate: 12 }
+      ];
+
+      const leafPositions = [
+        { top: '20px', left: '30px', rotate: -45 },
+        { top: '15px', left: '190px', rotate: 45 },
+        { top: '70px', left: '10px', rotate: -65 },
+        { top: '70px', left: '215px', rotate: 65 },
+        { top: '115px', left: '35px', rotate: -35 },
+        { top: '115px', left: '190px', rotate: 35 }
+      ];
+
+      function triggerBounce() {
+        visualBox.classList.remove('bouquet-bounce-active');
+        void visualBox.offsetWidth; // Reflow
+        visualBox.classList.add('bouquet-bounce-active');
+      }
+
+      function updateLivePreview(shouldBounce = true) {
         let totalStemsCount = 0;
         let totalPrice = 0;
         let stemsSummary = [];
-        let lastSelectedImg = 'assets/images/signature_bouquet.jpg';
+        let activeFlowersList = [];
+        let categoriesSet = new Set();
 
         stemCards.forEach(card => {
           const stemName = card.dataset.stem;
@@ -449,21 +594,62 @@
             totalStemsCount += qty;
             totalPrice += (qty * price);
             stemsSummary.push(`${qty}x ${stemName}`);
-            lastSelectedImg = img;
+            categoriesSet.add(stemName.replace(' Stem', '').replace(' Bloom', ''));
             card.classList.add('active-stem');
+
+            for (let i = 0; i < qty; i++) {
+              activeFlowersList.push({ name: stemName, img: img });
+            }
           } else {
             card.classList.remove('active-stem');
           }
         });
 
-        // Add base arrangement charge if stems exist
         if (totalStemsCount > 0) {
-          totalPrice += 15.00; // Base wrapping & design fee
-          previewImg.src = lastSelectedImg;
+          totalPrice += 15.00; // Base wrapping fee
+          previewImg.style.display = 'none';
+          customStage.style.display = 'flex';
+          countBadge.textContent = `${totalStemsCount} Stems Custom Bouquet`;
+
+          // Generate foliage fillers
+          let foliageHTML = '';
+          leafPositions.forEach(leaf => {
+            foliageHTML += `<div class="bouquet-leaf" style="top: ${leaf.top}; left: ${leaf.left}; transform: rotate(${leaf.rotate}deg);"></div>`;
+          });
+
+          // Generate arranged flower blooms dome
+          let stemsHTML = foliageHTML;
+          activeFlowersList.forEach((flower, idx) => {
+            const pos = flowerPositions[idx % flowerPositions.length];
+            stemsHTML += `<img src="${flower.img}" class="stem-flower-item" style="top: ${pos.top}; left: ${pos.left}; transform: rotate(${pos.rotate}deg); z-index: ${idx + 2};" title="${flower.name}" alt="${flower.name}">`;
+          });
+
+          // Append stem handles at bottom
+          stemsHTML += `<div class="stage-stem-handles"></div>`;
+
+          stageStemsContainer.innerHTML = stemsHTML;
           stemsListSpan.textContent = stemsSummary.join(', ');
+          categoriesSpan.textContent = Array.from(categoriesSet).join(' • ');
+
+          // Update Wrapper color
+          const selectedWrap = wrapperSelect.value;
+          if (wrapperColors[selectedWrap]) {
+            svgWrapPath.setAttribute('fill', wrapperColors[selectedWrap]);
+          }
+
+          // Update Ribbon
+          const selectedRibbon = ribbonSelect.value;
+          stageRibbon.textContent = ribbonIcons[selectedRibbon] || '🎀';
+
+          if (shouldBounce) {
+            triggerBounce();
+          }
         } else {
           stemsListSpan.textContent = "None selected";
-          previewImg.src = 'assets/images/signature_bouquet.jpg';
+          categoriesSpan.textContent = "None";
+          previewImg.style.display = 'block';
+          previewImg.style.opacity = '1';
+          customStage.style.display = 'none';
         }
 
         wrapperSpan.textContent = wrapperSelect.value;
@@ -480,27 +666,28 @@
         incBtn.addEventListener('click', () => {
           let curr = parseInt(qtyVal.textContent);
           qtyVal.textContent = curr + 1;
-          updateLivePreview();
+          updateLivePreview(true);
         });
 
         decBtn.addEventListener('click', () => {
           let curr = parseInt(qtyVal.textContent);
           if (curr > 0) {
             qtyVal.textContent = curr - 1;
-            updateLivePreview();
+            updateLivePreview(true);
           }
         });
       });
 
-      wrapperSelect.addEventListener('change', updateLivePreview);
-      ribbonSelect.addEventListener('change', updateLivePreview);
+      wrapperSelect.addEventListener('change', () => updateLivePreview(true));
+      ribbonSelect.addEventListener('change', () => updateLivePreview(true));
 
-      // Submit Form Handler
+      // Submit Form Handler -> Displays Final Custom Bouquet Modal
       const customForm = document.getElementById('custom-bouquet-form');
       customForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
         let stemsSummary = [];
+        let categoriesSet = new Set();
         let totalPrice = 0;
         let totalCount = 0;
 
@@ -513,6 +700,7 @@
             totalCount += qty;
             totalPrice += (qty * price);
             stemsSummary.push(`${qty}x ${stemName}`);
+            categoriesSet.add(stemName.replace(' Stem', '').replace(' Bloom', ''));
           }
         });
 
@@ -526,20 +714,53 @@
         const ribbon = ribbonSelect.value;
         const note = document.getElementById('maison-card-note').value;
 
-        const customItem = {
+        // Populate Modal Content
+        modalCanvas.innerHTML = customStage.outerHTML;
+        const clonedStage = modalCanvas.querySelector('#custom-bouquet-stage');
+        if (clonedStage) {
+          clonedStage.style.display = 'flex';
+        }
+
+        modalCategories.textContent = Array.from(categoriesSet).join(' • ');
+        modalStemsSummary.textContent = stemsSummary.join(', ');
+        modalWrapperSummary.textContent = wrapper;
+        modalRibbonSummary.textContent = ribbon;
+        modalTotalPrice.textContent = `$${totalPrice.toFixed(2)}`;
+
+        if (note.trim() !== '') {
+          modalNoteRow.style.display = 'block';
+          modalNoteSummary.textContent = `"${note.trim()}"`;
+        } else {
+          modalNoteRow.style.display = 'none';
+        }
+
+        currentCustomItem = {
           id: Date.now(),
           name: `Custom Bouquet (${totalCount} Stems)`,
           price: totalPrice,
           quantity: 1,
           category: 'custom',
-          image: previewImg.src,
-          description: `Stems: ${stemsSummary.join(', ')} | Wrap: ${wrapper} | Ribbon: ${ribbon} ${note ? '| Note: ' + note : ''}`
+          image: 'assets/images/signature_bouquet.jpg',
+          description: `Categories: ${Array.from(categoriesSet).join(', ')} | Stems: ${stemsSummary.join(', ')} | Wrap: ${wrapper} | Ribbon: ${ribbon} ${note ? '| Note: ' + note : ''}`
         };
 
-        let cart = Cart.getCart();
-        cart.push(customItem);
-        Cart.saveCart(cart);
-        Cart.showToast("Your bespoke Custom Bouquet was added to cart!");
+        // Open Modal
+        finalModal.style.display = 'flex';
+      });
+
+      // Modal Action Event Listeners
+      closeFinalModal.addEventListener('click', () => {
+        finalModal.style.display = 'none';
+      });
+
+      modalAddCartBtn.addEventListener('click', () => {
+        if (currentCustomItem) {
+          let cart = Cart.getCart();
+          cart.push(currentCustomItem);
+          Cart.saveCart(cart);
+          Cart.showToast("Your bespoke Custom Bouquet was added to cart!");
+          finalModal.style.display = 'none';
+        }
       });
 
       // Collections Direct Add
