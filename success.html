@@ -72,11 +72,17 @@
           <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
             <span>Order Date:</span> <span>${orderData.date}</span>
           </div>
-          <div style="display: flex; justify-content: space-between; margin-bottom: 0.8rem; border-bottom: 1px solid #cbd5e0; padding-bottom: 0.8rem;">
-            <span>Estimated Delivery:</span> <span style="color: var(--secondary); font-weight: 600;">Today within 2-4 Hours 🚚</span>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+            <span>Payment Method:</span> <strong style="color: var(--gold-accent); font-weight: 600;">${orderData.paymentMethod || 'Card Payment 💳'}</strong>
           </div>
-          <div style="display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: 700; color: var(--primary);">
-            <span>Total Paid:</span> <span>${orderData.total}</span>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.85rem; opacity: 0.8;">
+            <span>Payment Status / Details:</span> <span>${orderData.paymentDetails || 'Processed'}</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.8rem; border-bottom: 1px solid rgba(212,175,55,0.3); padding-bottom: 0.8rem;">
+            <span>Estimated Delivery:</span> <span style="color: #48bb78; font-weight: 600;">Today within 2-4 Hours 🚚</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: 700; color: var(--gold-accent);">
+            <span>${orderData.isCash ? 'Amount Due on Delivery:' : 'Total Paid:'}</span> <span>${orderData.total}</span>
           </div>
         `;
       } else {
