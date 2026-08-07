@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maison Rouge | Custom Flower Bouquets & Catalog</title>
+  <meta name="description" content="Maison Rouge Atelier - Curated rose bouquets, hand-built custom arrangements.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="maison-catalog">
+
+  <!-- Maison Rouge Fixed Header Nav -->
+  <nav class="maison-nav">
+    <a href="index.html" class="maison-logo">Maison Rouge</a>
+    <ul class="maison-nav-links">
+      <li><a href="#custom-builder">Custom Bouquet</a></li>
+      <li><a href="#collections">Collections</a></li>
+      <li><a href="#philosophy">Philosophy</a></li>
+      <li><a href="cart.html">Cart 🛒 <span class="cart-badge" style="background: var(--gold-accent); color: #000;">0</span></a></li>
+    </ul>
+    <div id="user-nav-slot">
+      <!-- Injected by auth.js -->
+    </div>
+  </nav>
+
+  <!-- Hero Header Banner -->
+  <header class="maison-hero">
+    <div class="maison-hero-left">
+      <span class="sub-tag">Maison Rouge • Floral Atelier</span>
+      <h1 class="maison-title">Maison Rouge</h1>
+      <p class="maison-desc">
+        Where contemporary design meets the ancient language of flowers. Each bouquet is a singular statement created for grand moments.
+      </p>
+      <div style="display: flex; gap: 1rem;">
+        <a href="#custom-builder" class="maison-btn maison-btn-gold">Create Custom Bouquet</a>
+        <a href="#collections" class="maison-btn">Explore Collections</a>
+      </div>
+    </div>
+    <div class="maison-hero-right"></div>
+  </header>
+
+  <!-- Behance Inspired Editorial Ticker Marquee -->
+  <div class="maison-ticker">
+    <div class="ticker-track">
+      🌸 MAISON ROUGE FLORAL ATELIER &nbsp;•&nbsp; BESPOKE SCULPTURAL BOUQUETS &nbsp;•&nbsp; LUXURY FLORAL STYLING &nbsp;•&nbsp; HAND-TIED FRESH ROSES &nbsp;•&nbsp; MAISON ROUGE FLORAL ATELIER &nbsp;•&nbsp; BESPOKE SCULPTURAL BOUQUETS &nbsp;•&nbsp; LUXURY FLORAL STYLING &nbsp;•&nbsp; HAND-TIED FRESH ROSES &nbsp;•&nbsp;
+    </div>
+  </div>
+
+  <main style="background: var(--bg-deeper-burgundy); max-width: 100%; margin: 0 auto; padding: 4rem 2rem;">
+    <div style="max-width: 1240px; margin: 0 auto;">
+
+    <!-- Behance Inspired Bespoke Custom Bouquet Builder Section -->
+    <section id="custom-builder" style="margin-bottom: 6rem; scroll-margin-top: 120px;">
+      <div style="text-align: center; margin-bottom: 3.5rem;">
+        <span class="sub-tag" style="color: var(--gold-accent); letter-spacing: 3px; font-weight: 600;">Maison Rouge • Atelier Customizer</span>
+        <h2 class="editorial-heading" style="font-size: 3.6rem; color: #ffffff !important; margin-bottom: 0.8rem; text-shadow: 0 4px 20px rgba(0,0,0,0.8);">Build Your Dream Bouquet</h2>
+        <p style="color: rgba(255, 255, 255, 0.85) !important; max-width: 650px; margin: 0 auto; font-size: 1.1rem; line-height: 1.6;">
+          Select your bespoke flower stems, luxury wrapping material, and silk ribbon. Watch your custom bouquet form with instant price calculation.
+        </p>
+      </div>
+
+      <!-- Balanced 2-Column Grid: Left Selection Cards & Right Atelier Live Preview -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start;">
+        
+        <!-- Left Selection Form Card -->
+        <div class="maison-customizer-box" style="background: #250205; border: 1px solid rgba(212, 175, 55, 0.4); padding: 2.2rem; border-radius: 12px; box-shadow: 0 25px 60px rgba(0,0,0,0.7);">
+          <form id="custom-bouquet-form">
+            
+            <!-- 1. Stem Selector Grid -->
+            <div style="margin-bottom: 2.2rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem;">
+                <h3 class="editorial-heading" style="font-size: 1.4rem; color: var(--gold-accent);">1. Choose Flower Stems</h3>
+                <span style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Use + / - to add stems</span>
+              </div>
+              
+              <div class="stem-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem;">
+                
+                <!-- Red Lily Stem -->
+                <div class="stem-card" data-stem="Red Lily" data-price="4.50" data-img="assets/images/red_lily_stem.jpg" style="background: #1c0104; border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 10px; overflow: hidden;">
+                  <div class="stem-img-wrapper" style="height: 140px;">
+                    <img src="assets/images/red_lily_stem.jpg" alt="Red Lily Stem" style="width: 100%; height: 100%; object-fit: cover;">
+                  </div>
+                  <div class="stem-card-body" style="padding: 0.9rem;">
+                    <h4 class="stem-title" style="font-size: 1rem; color: #fff;">Red Lily Stem</h4>
+                    <span class="stem-price" style="font-size: 0.8rem; color: var(--gold-accent); margin-bottom: 0.6rem; display: block;">$4.50 / stem</span>
+                    <div class="stem-qty-picker">
+                      <button type="button" class="stem-qty-btn dec-stem">-</button>
+                      <span class="stem-qty-num stem-qty-val">0</span>
+                      <button type="button" class="stem-qty-btn inc-stem">+</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Red Spider Lily -->
+                <div class="stem-card" data-stem="Red Spider Lily" data-price="5.00" data-img="assets/images/red_spider_lily.jpg" style="background: #1c0104; border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 10px; overflow: hidden;">
+                  <div class="stem-img-wrapper" style="height: 140px;">
+                    <img src="assets/images/red_spider_lily.jpg" alt="Red Spider Lily" style="width: 100%; height: 100%; object-fit: cover;">
+                  </div>
+                  <div class="stem-card-body" style="padding: 0.9rem;">
+                    <h4 class="stem-title" style="font-size: 1rem; color: #fff;">Red Spider Lily</h4>
+                    <span class="stem-price" style="font-size: 0.8rem; color: var(--gold-accent); margin-bottom: 0.6rem; display: block;">$5.00 / stem</span>
+                    <div class="stem-qty-picker">
+                      <button type="button" class="stem-qty-btn dec-stem">-</button>
+                      <span class="stem-qty-num stem-qty-val">0</span>
+                      <button type="button" class="stem-qty-btn inc-stem">+</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Purple Baby's Breath -->
+                <div class="stem-card" data-stem="Purple Baby Breath" data-price="3.80" data-img="assets/images/purple_baby_breath.jpg" style="background: #1c0104; border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 10px; overflow: hidden;">
+                  <div class="stem-img-wrapper" style="height: 140px;">
+                    <img src="assets/images/purple_baby_breath.jpg" alt="Purple Baby Breath" style="width: 100%; height: 100%; object-fit: cover;">
+                  </div>
+                  <div class="stem-card-body" style="padding: 0.9rem;">
+                    <h4 class="stem-title" style="font-size: 1rem; color: #fff;">Purple Baby's Breath</h4>
+                    <span class="stem-price" style="font-size: 0.8rem; color: var(--gold-accent); margin-bottom: 0.6rem; display: block;">$3.80 / stem</span>
+                    <div class="stem-qty-picker">
+                      <button type="button" class="stem-qty-btn dec-stem">-</button>
+                      <span class="stem-qty-num stem-qty-val">0</span>
+                      <button type="button" class="stem-qty-btn inc-stem">+</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Pink Parrot Tulip -->
+                <div class="stem-card" data-stem="Pink Parrot Tulip" data-price="4.20" data-img="assets/images/pink_tulip_stem.jpg" style="background: #1c0104; border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 10px; overflow: hidden;">
+                  <div class="stem-img-wrapper" style="height: 140px;">
+                    <img src="assets/images/pink_tulip_stem.jpg" alt="Pink Parrot Tulip" style="width: 100%; height: 100%; object-fit: cover;">
+                  </div>
+                  <div class="stem-card-body" style="padding: 0.9rem;">
+                    <h4 class="stem-title" style="font-size: 1rem; color: #fff;">Pink Parrot Tulip</h4>
+                    <span class="stem-price" style="font-size: 0.8rem; color: var(--gold-accent); margin-bottom: 0.6rem; display: block;">$4.20 / stem</span>
+                    <div class="stem-qty-picker">
+                      <button type="button" class="stem-qty-btn dec-stem">-</button>
+                      <span class="stem-qty-num stem-qty-val">0</span>
+                      <button type="button" class="stem-qty-btn inc-stem">+</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- White Iris Bloom -->
+                <div class="stem-card" data-stem="White Iris Bloom" data-price="4.60" data-img="assets/images/white_iris_stem.jpg" style="background: #1c0104; border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 10px; overflow: hidden;">
+                  <div class="stem-img-wrapper" style="height: 140px;">
+                    <img src="assets/images/white_iris_stem.jpg" alt="White Iris Bloom" style="width: 100%; height: 100%; object-fit: cover;">
+                  </div>
+                  <div class="stem-card-body" style="padding: 0.9rem;">
+                    <h4 class="stem-title" style="font-size: 1rem; color: #fff;">White Iris Bloom</h4>
+                    <span class="stem-price" style="font-size: 0.8rem; color: var(--gold-accent); margin-bottom: 0.6rem; display: block;">$4.60 / stem</span>
+                    <div class="stem-qty-picker">
+                      <button type="button" class="stem-qty-btn dec-stem">-</button>
+                      <span class="stem-qty-num stem-qty-val">0</span>
+                      <button type="button" class="stem-qty-btn inc-stem">+</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Velvet Red Rose -->
+                <div class="stem-card" data-stem="Velvet Red Rose" data-price="3.50" data-img="assets/images/dark_red_roses.jpg" style="background: #1c0104; border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 10px; overflow: hidden;">
+                  <div class="stem-img-wrapper" style="height: 140px;">
+                    <img src="assets/images/dark_red_roses.jpg" alt="Velvet Red Rose" style="width: 100%; height: 100%; object-fit: cover;">
+                  </div>
+                  <div class="stem-card-body" style="padding: 0.9rem;">
+                    <h4 class="stem-title" style="font-size: 1rem; color: #fff;">Velvet Red Rose</h4>
+                    <span class="stem-price" style="font-size: 0.8rem; color: var(--gold-accent); margin-bottom: 0.6rem; display: block;">$3.50 / stem</span>
+                    <div class="stem-qty-picker">
+                      <button type="button" class="stem-qty-btn dec-stem">-</button>
+                      <span class="stem-qty-num stem-qty-val">0</span>
+                      <button type="button" class="stem-qty-btn inc-stem">+</button>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- 2. Wrapping Material & Ribbon Selection -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 1.8rem;">
+              <div>
+                <h3 class="editorial-heading" style="font-size: 1.2rem; color: var(--gold-accent); margin-bottom: 0.5rem;">2. Wrapping Material</h3>
+                <select id="maison-wrapper-select" class="maison-input" style="background: #1c0104; color: #fff; border: 1px solid rgba(212,175,55,0.4); padding: 0.8rem; border-radius: 6px; width: 100%;">
+                  <option value="🔴 Velvet Crimson Red Wrapping">🔴 Velvet Crimson Red Wrapping</option>
+                  <option value="🖤 Matte Midnight Black Wrapping">🖤 Matte Midnight Black Wrapping</option>
+                  <option value="⚪ Pristine Pearl White Wrapping">⚪ Pristine Pearl White Wrapping</option>
+                  <option value="🤎 Vintage Eco Kraft Brown Wrapping">🤎 Vintage Eco Kraft Brown Wrapping</option>
+                  <option value="💜 Luxury Royal Purple Wrapping">💜 Luxury Royal Purple Wrapping</option>
+                </select>
+              </div>
+              <div>
+                <h3 class="editorial-heading" style="font-size: 1.2rem; color: var(--gold-accent); margin-bottom: 0.5rem;">3. Silk Ribbon Color</h3>
+                <select id="maison-ribbon-select" class="maison-input" style="background: #1c0104; color: #fff; border: 1px solid rgba(212,175,55,0.4); padding: 0.8rem; border-radius: 6px; width: 100%;">
+                  <option value="✨ Metallic Gold Silk Ribbon">✨ Metallic Gold Silk Ribbon</option>
+                  <option value="🔴 Deep Crimson Red Velvet Ribbon">🔴 Deep Crimson Red Velvet Ribbon</option>
+                  <option value="🌸 Soft Blush Pink Satin Ribbon">🌸 Soft Blush Pink Satin Ribbon</option>
+                  <option value="⚪ Ivory Cream Satin Ribbon">⚪ Ivory Cream Satin Ribbon</option>
+                  <option value="💜 Royal Orchid Purple Ribbon">💜 Royal Orchid Purple Ribbon</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- 4. Gift Card Note -->
+            <div style="margin-bottom: 2rem;">
+              <h3 class="editorial-heading" style="font-size: 1.2rem; color: var(--gold-accent); margin-bottom: 0.5rem;">4. Gift Card Note</h3>
+              <textarea id="maison-card-note" class="maison-input" rows="2" placeholder="Write a personal note for recipient..." style="background: #1c0104; color: #fff; border: 1px solid rgba(212,175,55,0.3); border-radius: 6px; padding: 0.8rem; width: 100%;"></textarea>
+            </div>
+
+            <button type="submit" class="maison-btn maison-btn-gold" style="width: 100%; padding: 1.1rem; font-size: 0.85rem; letter-spacing: 2px;">
+              REQUEST THIS CUSTOM BOUQUET 💐
+            </button>
+
+          </form>
+        </div>
+
+        <!-- Right Live Visual Bouquet Preview Panel (Symmetrical Frame) -->
+        <div class="bouquet-live-preview" style="background: #250205; border: 1px solid rgba(212, 175, 55, 0.4); padding: 2.2rem; border-radius: 12px; box-shadow: 0 25px 60px rgba(0,0,0,0.7); height: 100%;">
+          <span class="sub-tag" style="color: var(--gold-accent);">Atelier Live Preview</span>
+          <h3 class="editorial-heading" style="font-size: 2.2rem; color: #fff; margin-bottom: 0.4rem;">Your Custom Bouquet</h3>
+          
+          <!-- Visual Bouquet Composition Box -->
+          <div class="visual-bouquet-holder" style="height: 320px; border-radius: 10px; overflow: hidden; border: 1px solid rgba(212, 175, 55, 0.3); margin: 1.5rem 0;">
+            <img id="main-preview-img" src="assets/images/signature_bouquet.jpg" alt="Custom Bouquet" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+
+          <!-- Dynamic Breakdown Panel -->
+          <div style="text-align: left; background: #1c0104; padding: 1.4rem; border-radius: 8px; font-size: 0.9rem; border: 1px solid rgba(212,175,55,0.2);">
+            <div style="margin-bottom: 0.6rem; color: rgba(255,255,255,0.75);">
+              <strong>Stems Selected:</strong> 
+              <span id="preview-stems-list" style="color: #fff; font-weight: 500;">None selected</span>
+            </div>
+            <div style="margin-bottom: 0.6rem; color: rgba(255,255,255,0.75);">
+              <strong>Wrapper:</strong> 
+              <span id="preview-wrapper-name" style="color: var(--gold-accent);">Velvet Crimson Red Wrapping</span>
+            </div>
+            <div style="margin-bottom: 1rem; color: rgba(255,255,255,0.75);">
+              <strong>Ribbon:</strong> 
+              <span id="preview-ribbon-name" style="color: var(--gold-accent);">Metallic Gold Silk Ribbon</span>
+            </div>
+
+            <div style="border-top: 1px dashed rgba(212,175,55,0.3); padding-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 1.05rem; color: #fff; font-weight: 600;">Total Bouquet Price:</span>
+              <span id="preview-total-price" style="font-size: 1.7rem; font-weight: bold; color: var(--gold-accent);">$0.00</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Curated Collections Section -->
+    <section id="collections" style="margin-bottom: 6rem; scroll-margin-top: 120px;">
+      <span class="sub-tag">Collections</span>
+      <h2 class="editorial-heading" style="font-size: 3.2rem; margin-bottom: 2.5rem;">
+        Bouquets that Stay with You
+      </h2>
+
+      <div class="collections-grid">
+        <div class="collection-card">
+          <img src="assets/images/dark_red_roses.jpg" alt="The Rose Edit">
+          <div class="collection-overlay">
+            <span style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: var(--gold-accent);">Single Variety</span>
+            <h3 class="editorial-heading" style="font-size: 1.5rem; color: #fff; margin: 0.3rem 0;">The Rose Edit</h3>
+            <p style="font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-bottom: 0.8rem;">Timeless romance in deep velvet crimson.</p>
+            <button class="maison-btn add-item-btn" data-id="1" data-name="The Rose Edit" data-price="49.99" style="padding: 0.4rem 1rem; font-size: 0.7rem;">+ Add ($49.99)</button>
+          </div>
+        </div>
+
+        <div class="collection-card">
+          <img src="assets/images/white_ranunculus.jpg" alt="Blanc Rouge">
+          <div class="collection-overlay">
+            <span style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: var(--gold-accent);">Sculptural</span>
+            <h3 class="editorial-heading" style="font-size: 1.5rem; color: #fff; margin: 0.3rem 0;">Blanc Rouge</h3>
+            <p style="font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-bottom: 0.8rem;">Pure elegance & architectural layers.</p>
+            <button class="maison-btn add-item-btn" data-id="2" data-name="Blanc Rouge" data-price="55.00" style="padding: 0.4rem 1rem; font-size: 0.7rem;">+ Add ($55.00)</button>
+          </div>
+        </div>
+
+        <div class="collection-card">
+          <img src="assets/images/signature_bouquet.jpg" alt="Special Occasions">
+          <div class="collection-overlay">
+            <span style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: var(--gold-accent);">Atelier Special</span>
+            <h3 class="editorial-heading" style="font-size: 1.5rem; color: #fff; margin: 0.3rem 0;">Special Occasions</h3>
+            <p style="font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-bottom: 0.8rem;">Midnight mood & grand celebrations.</p>
+            <button class="maison-btn add-item-btn" data-id="3" data-name="Special Occasions" data-price="65.00" style="padding: 0.4rem 1rem; font-size: 0.7rem;">+ Add ($65.00)</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section id="philosophy" class="philosophy-grid" style="background: rgba(18, 1, 3, 0.85); padding: 4rem 3rem; border-radius: 8px; border: 1px solid rgba(212,175,55,0.2); margin-bottom: 6rem;">
+      <div>
+        <span class="sub-tag">Philosophy</span>
+        <h2 class="editorial-heading" style="font-size: 2.8rem; line-height: 1.15;">Flowers as Architecture</h2>
+      </div>
+      <div>
+        <blockquote class="philosophy-quote">
+          "Each bouquet is designed to be remembered long after the moment has passed."
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- Contact & Social Media Section (Behance Luxury Footer Inspired) -->
+    <section id="contact" style="background: #1a0104; padding: 4rem 2rem; border-radius: 12px; border: 1px solid rgba(212,175,55,0.3); text-align: center;">
+      <span class="sub-tag" style="color: var(--gold-accent); letter-spacing: 3px;">Get in Touch</span>
+      <h2 class="editorial-heading" style="font-size: 3rem; color: #fff; margin-bottom: 1rem;">Connect with Maison Rouge</h2>
+      <p style="color: rgba(255,255,255,0.7); max-width: 550px; margin: 0 auto 2rem auto; font-size: 0.95rem;">
+        For custom wedding arrangements, corporate floral styling, or private bouquet consultations, reach out to our master florists.
+      </p>
+
+      <!-- Social Media Buttons -->
+      <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 2.5rem;">
+        <a href="https://instagram.com" target="_blank" class="social-link" title="Instagram">📸</a>
+        <a href="https://pinterest.com" target="_blank" class="social-link" title="Pinterest">📌</a>
+        <a href="https://facebook.com" target="_blank" class="social-link" title="Facebook">📘</a>
+        <a href="https://behance.net" target="_blank" class="social-link" title="Behance Portfolio">🎨</a>
+        <a href="mailto:atelier@maisonrouge.com" class="social-link" title="Email Us">✉️</a>
+      </div>
+
+      <div style="font-size: 0.9rem; color: rgba(255,255,255,0.6); display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap;">
+        <span>📍 450 Atelier Way, Luxury Floral District</span>
+        <span>📞 +1 (800) 555-BLOOM</span>
+        <span>🕒 Mon - Sat: 9:00 AM - 7:00 PM</span>
+      </div>
+    </section>
+
+    </div>
+  </main>
+
+  <footer style="background: #120103; padding: 3rem; text-align: center; color: rgba(255,255,255,0.5); border-top: 1px solid rgba(255,255,255,0.08);">
+    <p style="font-family: 'Bodoni Moda', serif; font-size: 1.4rem; color: #fff; margin-bottom: 0.8rem;">Maison Rouge • Floral Atelier</p>
+    <p style="font-size: 0.85rem;">&copy; 2026 Maison Rouge Atelier. All rights reserved.</p>
+  </footer>
+
+  <!-- Scripts for Interactive Stem Counter & Live Bouquet Preview -->
+  <script type="module">
+    import { Auth } from './js/auth.js';
+    import { Cart } from './js/app.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      Auth.updateNavUI();
+      Cart.updateCartBadge();
+
+      const stemCards = document.querySelectorAll('.stem-card');
+      const stemsListSpan = document.getElementById('preview-stems-list');
+      const wrapperSpan = document.getElementById('preview-wrapper-name');
+      const ribbonSpan = document.getElementById('preview-ribbon-name');
+      const totalPriceSpan = document.getElementById('preview-total-price');
+      const previewImg = document.getElementById('main-preview-img');
+
+      const wrapperSelect = document.getElementById('maison-wrapper-select');
+      const ribbonSelect = document.getElementById('maison-ribbon-select');
+
+      // State
+      let selectedStemsData = {};
+
+      function updateLivePreview() {
+        let totalStemsCount = 0;
+        let totalPrice = 0;
+        let stemsSummary = [];
+        let lastSelectedImg = 'assets/images/signature_bouquet.jpg';
+
+        stemCards.forEach(card => {
+          const stemName = card.dataset.stem;
+          const price = parseFloat(card.dataset.price);
+          const img = card.dataset.img;
+          const qty = parseInt(card.querySelector('.stem-qty-val').textContent);
+
+          if (qty > 0) {
+            totalStemsCount += qty;
+            totalPrice += (qty * price);
+            stemsSummary.push(`${qty}x ${stemName}`);
+            lastSelectedImg = img;
+            card.classList.add('active-stem');
+          } else {
+            card.classList.remove('active-stem');
+          }
+        });
+
+        // Add base arrangement charge if stems exist
+        if (totalStemsCount > 0) {
+          totalPrice += 15.00; // Base wrapping & design fee
+          previewImg.src = lastSelectedImg;
+          stemsListSpan.textContent = stemsSummary.join(', ');
+        } else {
+          stemsListSpan.textContent = "None selected";
+          previewImg.src = 'assets/images/signature_bouquet.jpg';
+        }
+
+        wrapperSpan.textContent = wrapperSelect.value;
+        ribbonSpan.textContent = ribbonSelect.value;
+        totalPriceSpan.textContent = `$${totalPrice.toFixed(2)}`;
+      }
+
+      // Quantity button handlers
+      stemCards.forEach(card => {
+        const incBtn = card.querySelector('.inc-stem');
+        const decBtn = card.querySelector('.dec-stem');
+        const qtyVal = card.querySelector('.stem-qty-val');
+
+        incBtn.addEventListener('click', () => {
+          let curr = parseInt(qtyVal.textContent);
+          qtyVal.textContent = curr + 1;
+          updateLivePreview();
+        });
+
+        decBtn.addEventListener('click', () => {
+          let curr = parseInt(qtyVal.textContent);
+          if (curr > 0) {
+            qtyVal.textContent = curr - 1;
+            updateLivePreview();
+          }
+        });
+      });
+
+      wrapperSelect.addEventListener('change', updateLivePreview);
+      ribbonSelect.addEventListener('change', updateLivePreview);
+
+      // Submit Form Handler
+      const customForm = document.getElementById('custom-bouquet-form');
+      customForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        let stemsSummary = [];
+        let totalPrice = 0;
+        let totalCount = 0;
+
+        stemCards.forEach(card => {
+          const stemName = card.dataset.stem;
+          const price = parseFloat(card.dataset.price);
+          const qty = parseInt(card.querySelector('.stem-qty-val').textContent);
+
+          if (qty > 0) {
+            totalCount += qty;
+            totalPrice += (qty * price);
+            stemsSummary.push(`${qty}x ${stemName}`);
+          }
+        });
+
+        if (totalCount === 0) {
+          alert("Please select at least 1 flower stem to request your custom bouquet!");
+          return;
+        }
+
+        totalPrice += 15.00; // Base wrapping fee
+        const wrapper = wrapperSelect.value;
+        const ribbon = ribbonSelect.value;
+        const note = document.getElementById('maison-card-note').value;
+
+        const customItem = {
+          id: Date.now(),
+          name: `Custom Bouquet (${totalCount} Stems)`,
+          price: totalPrice,
+          quantity: 1,
+          category: 'custom',
+          image: previewImg.src,
+          description: `Stems: ${stemsSummary.join(', ')} | Wrap: ${wrapper} | Ribbon: ${ribbon} ${note ? '| Note: ' + note : ''}`
+        };
+
+        let cart = Cart.getCart();
+        cart.push(customItem);
+        Cart.saveCart(cart);
+        Cart.showToast("Your bespoke Custom Bouquet was added to cart!");
+      });
+
+      // Collections Direct Add
+      document.querySelectorAll('.add-item-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const id = parseInt(e.target.dataset.id);
+          Cart.addItem(id);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart & Checkout | Bloom & Blossom</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="maison-theme">
+
+  <!-- Fixed Editorial Header Nav -->
+  <nav class="maison-nav">
+    <a href="index.html" class="maison-logo">Maison Rouge</a>
+    <ul class="maison-nav-links">
+      <li><a href="index.html#custom-builder">Custom Bouquet</a></li>
+      <li><a href="index.html#collections">Collections</a></li>
+      <li><a href="index.html#philosophy">Philosophy</a></li>
+      <li><a href="cart.html">Cart 🛒 <span class="cart-badge" style="background: var(--gold-accent); color: #000;">0</span></a></li>
+    </ul>
+    <div id="user-nav-slot"></div>
+  </nav>
+
+  <main class="main-container">
+    <h2 style="font-size: 2.2rem; margin-bottom: 1.5rem; text-align: center;">Your Flower Cart</h2>
+
+    <div class="cart-grid">
+      <!-- Left Cart Items Table -->
+      <div class="cart-table-wrapper">
+        <table class="cart-table" id="cart-table">
+          <thead>
+            <tr>
+              <th>Flower Item</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Total</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="cart-items-body">
+            <!-- Dynamically injected -->
+          </tbody>
+        </table>
+
+        <div id="empty-cart-msg" style="display: none; text-align: center; padding: 3rem 1rem;">
+          <p style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 1.5rem;">Your cart is currently empty!</p>
+          <a href="index.html" class="btn btn-primary">Browse Flowers 💐</a>
+        </div>
+      </div>
+
+      <!-- Right Summary Panel -->
+      <div class="summary-card">
+        <h3 style="font-size: 1.4rem; margin-bottom: 1.2rem;">Order Summary</h3>
+        
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="subtotal-val">$0.00</span>
+        </div>
+        <div class="summary-row">
+          <span>Delivery Fee</span>
+          <span id="delivery-val">$5.00</span>
+        </div>
+        <div class="summary-row">
+          <span>Tax (5%)</span>
+          <span id="tax-val">$0.00</span>
+        </div>
+
+        <div class="summary-total summary-row">
+          <span>Grand Total</span>
+          <span id="total-val">$0.00</span>
+        </div>
+
+        <div style="margin-top: 1.5rem;">
+          <button id="checkout-btn" class="btn btn-primary" style="width: 100%; padding: 0.9rem;">
+            Proceed to Checkout 💳
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Bloom & Blossom Flower Shop</p>
+  </footer>
+
+  <script type="module">
+    import { Cart } from './js/app.js';
+    import { Auth } from './js/auth.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      Auth.updateNavUI();
+      Cart.updateCartBadge();
+
+      const body = document.getElementById('cart-items-body');
+      const emptyMsg = document.getElementById('empty-cart-msg');
+      const table = document.getElementById('cart-table');
+
+      function renderCart() {
+        const cart = Cart.getCart();
+        
+        if (cart.length === 0) {
+          table.style.display = 'none';
+          emptyMsg.style.display = 'block';
+          updateSummary(0);
+          return;
+        }
+
+        table.style.display = 'table';
+        emptyMsg.style.display = 'none';
+
+        let subtotal = 0;
+        body.innerHTML = cart.map(item => {
+          const itemTotal = item.price * item.quantity;
+          subtotal += itemTotal;
+          return `
+            <tr>
+              <td>
+                <div style="display: flex; align-items: center; gap: 0.8rem;">
+                  <img src="${item.image}" alt="${item.name}" class="cart-item-img">
+                  <div>
+                    <strong style="display: block;">${item.name}</strong>
+                    <span style="font-size: 0.8rem; color: var(--text-muted);">${item.category.toUpperCase()}</span>
+                  </div>
+                </div>
+              </td>
+              <td>$${item.price.toFixed(2)}</td>
+              <td>
+                <div class="qty-control">
+                  <button class="qty-btn dec-btn" data-id="${item.id}">-</button>
+                  <span style="font-weight: 600; width: 20px; text-align: center;">${item.quantity}</span>
+                  <button class="qty-btn inc-btn" data-id="${item.id}">+</button>
+                </div>
+              </td>
+              <td style="font-weight: 700;">$${itemTotal.toFixed(2)}</td>
+              <td>
+                <button class="btn remove-btn" data-id="${item.id}" style="background: none; border: none; color: #e53e3e; cursor: pointer; font-size: 1.1rem;">🗑️</button>
+              </td>
+            </tr>
+          `;
+        }).join('');
+
+        updateSummary(subtotal);
+
+        // Attach event handlers
+        document.querySelectorAll('.inc-btn').forEach(b => {
+          b.addEventListener('click', (e) => {
+            Cart.updateQuantity(parseInt(e.target.dataset.id), 1);
+            renderCart();
+          });
+        });
+
+        document.querySelectorAll('.dec-btn').forEach(b => {
+          b.addEventListener('click', (e) => {
+            Cart.updateQuantity(parseInt(e.target.dataset.id), -1);
+            renderCart();
+          });
+        });
+
+        document.querySelectorAll('.remove-btn').forEach(b => {
+          b.addEventListener('click', (e) => {
+            Cart.removeItem(parseInt(e.target.dataset.id));
+            renderCart();
+          });
+        });
+      }
+
+      function updateSummary(subtotal) {
+        const delivery = subtotal > 0 ? 5.00 : 0.00;
+        const tax = subtotal * 0.05;
+        const total = subtotal + delivery + tax;
+
+        document.getElementById('subtotal-val').textContent = `$${subtotal.toFixed(2)}`;
+        document.getElementById('delivery-val').textContent = `$${delivery.toFixed(2)}`;
+        document.getElementById('tax-val').textContent = `$${tax.toFixed(2)}`;
+        document.getElementById('total-val').textContent = `$${total.toFixed(2)}`;
+      }
+
+      renderCart();
+
+      // Checkout handler
+      document.getElementById('checkout-btn').addEventListener('click', () => {
+        const cart = Cart.getCart();
+        if (cart.length === 0) {
+          alert("Your cart is empty!");
+          return;
+        }
+
+        const user = Auth.getUser();
+        if (!user) {
+          if (confirm("Please log in or register before completing your order. Go to login?")) {
+            window.location.href = 'login.html';
+          }
+          return;
+        }
+
+        // Store active order and redirect to success page
+        const orderSummary = {
+          orderId: "ORD-" + Math.floor(100000 + Math.random() * 900000),
+          user: user,
+          items: cart,
+          date: new Date().toLocaleDateString(),
+          total: document.getElementById('total-val').textContent
+        };
+
+        localStorage.setItem('last_order', JSON.stringify(orderSummary));
+        Cart.clearCart();
+        window.location.href = 'success.html';
+      });
+    });
+  </script>
+</body>
+</html>

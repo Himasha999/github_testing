@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmed! | Bloom & Blossom</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body class="maison-theme">
+
+  <!-- Fixed Editorial Header Nav -->
+  <nav class="maison-nav">
+    <a href="index.html" class="maison-logo">Maison Rouge</a>
+    <ul class="maison-nav-links">
+      <li><a href="index.html#custom-builder">Custom Bouquet</a></li>
+      <li><a href="index.html#collections">Collections</a></li>
+      <li><a href="index.html#philosophy">Philosophy</a></li>
+      <li><a href="cart.html">Cart 🛒 <span class="cart-badge" style="background: var(--gold-accent); color: #000;">0</span></a></li>
+    </ul>
+    <div id="user-nav-slot"></div>
+  </nav>
+
+  <main class="main-container">
+    <div class="success-card">
+      <div class="success-icon">🎉</div>
+      <h2 style="font-size: 2.2rem; color: var(--secondary); margin-bottom: 0.5rem;">Order Placed Successfully!</h2>
+      <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1.5rem;">Thank you for shopping with Bloom & Blossom. Your fresh bouquet is being lovingly prepared.</p>
+
+      <div id="order-details" style="background: #f8fafc; padding: 1.5rem; border-radius: 12px; text-align: left; margin-bottom: 2rem; border: 1px solid #e2e8f0;">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <div style="display: flex; justify-content: center; gap: 1rem;">
+        <a href="index.html" class="btn btn-primary">Continue Shopping 💐</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Bloom & Blossom Flower Shop</p>
+  </footer>
+
+  <script type="module">
+    import { Auth } from './js/auth.js';
+    import { Cart } from './js/app.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      Auth.updateNavUI();
+      Cart.updateCartBadge();
+
+      // Trigger flower celebration confetti
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+      }
+
+      const orderData = JSON.parse(localStorage.getItem('last_order'));
+      const detailsContainer = document.getElementById('order-details');
+
+      if (orderData) {
+        detailsContainer.innerHTML = `
+          <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #cbd5e0; padding-bottom: 0.8rem; margin-bottom: 0.8rem;">
+            <strong>Order Reference:</strong> <span>${orderData.orderId}</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+            <span>Customer Name:</span> <strong>${orderData.user.name}</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+            <span>Order Date:</span> <span>${orderData.date}</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.8rem; border-bottom: 1px solid #cbd5e0; padding-bottom: 0.8rem;">
+            <span>Estimated Delivery:</span> <span style="color: var(--secondary); font-weight: 600;">Today within 2-4 Hours 🚚</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: 700; color: var(--primary);">
+            <span>Total Paid:</span> <span>${orderData.total}</span>
+          </div>
+        `;
+      } else {
+        detailsContainer.innerHTML = `<p style="text-align: center;">Order completed. Thank you!</p>`;
+      }
+    });
+  </script>
+</body>
+</html>

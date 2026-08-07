@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maison Rouge | Floral Atelier & Luxury Login</title>
+  <meta name="description" content="Maison Rouge - Floral Atelier. Contemporary flower bouquets, sculptural statement arrangements.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="maison-theme">
+
+  <!-- Fixed Editorial Header Nav -->
+  <nav class="maison-nav">
+    <a href="index.html" class="maison-logo">Maison Rouge</a>
+    <ul class="maison-nav-links">
+      <li><a href="#collections">Collections</a></li>
+      <li><a href="#philosophy">Philosophy</a></li>
+      <li><a href="#signature">Atelier</a></li>
+      <li><a href="cart.html">Cart 🛒 <span class="cart-badge" style="background: var(--gold-accent); color: #000;">0</span></a></li>
+    </ul>
+    <div id="user-nav-slot"></div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="maison-hero">
+    <div class="maison-hero-left">
+      <span class="sub-tag">Maison Rouge • Floral Atelier</span>
+      <h1 class="maison-title">Maison Rouge</h1>
+      <p class="maison-desc">
+        Where contemporary design meets the ancient language of flowers. Each bouquet is a singular, sculptural statement crafted for grand moments.
+      </p>
+      
+      <div style="display: flex; gap: 1rem; align-items: center;">
+        <a href="#login-portal" class="maison-btn maison-btn-gold">Sign In / Register</a>
+        <a href="#collections" class="maison-btn">Explore Collection</a>
+      </div>
+    </div>
+
+    <div class="maison-hero-right"></div>
+  </section>
+
+  <!-- Login & Registration Interactive Portal Section -->
+  <section id="login-portal" class="maison-section" style="background: var(--bg-dark-burgundy); padding: 5rem 2rem; display: flex; justify-content: center; align-items: center; position: relative;">
+    
+    <div class="maison-login-box">
+      
+      <!-- Login View -->
+      <div id="login-view">
+        <span class="sub-tag" style="text-align: center; margin-bottom: 0.4rem;">Customer Portal</span>
+        <h2 class="editorial-heading" style="font-size: 2.2rem; text-align: center; color: #fff; margin-bottom: 0.5rem; letter-spacing: 1px;">Member Login</h2>
+        <p style="text-align: center; color: rgba(255,255,255,0.6); font-size: 0.88rem; margin-bottom: 1.8rem;">Enter your credentials to access your bespoke orders.</p>
+
+        <div id="login-error-msg" style="display: none; background: rgba(229, 62, 62, 0.2); color: #feb2b2; padding: 0.8rem; border-radius: 4px; font-size: 0.85rem; margin-bottom: 1rem; border: 1px solid rgba(229, 62, 62, 0.4);"></div>
+
+        <form id="maison-login-form">
+          <div style="margin-bottom: 1.2rem;">
+            <label style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.7);">Username / Email</label>
+            <input type="email" id="login-username" class="maison-input" placeholder="e.g. customer@maisonrouge.com" required value="demo@bloom.com">
+          </div>
+
+          <div style="margin-bottom: 1.5rem;">
+            <label style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.7);">Password</label>
+            <input type="password" id="login-password" class="maison-input" placeholder="••••••••" required value="demo123">
+          </div>
+
+          <button type="submit" id="btn-login-submit" class="maison-btn maison-btn-gold" style="width: 100%; padding: 0.95rem; font-size: 0.85rem;">
+            Log In to Account
+          </button>
+        </form>
+
+        <div style="margin-top: 1.8rem; text-align: center; font-size: 0.88rem; color: rgba(255,255,255,0.7);">
+          Don't have an account? 
+          <a href="javascript:void(0)" id="toggle-to-signup" style="color: var(--gold-accent); text-decoration: underline; font-weight: 600; margin-left: 5px;">
+            Sign up here
+          </a>
+        </div>
+      </div>
+
+      <!-- Sign Up View (Hidden by default) -->
+      <div id="signup-view" style="display: none;">
+        <span class="sub-tag" style="text-align: center; margin-bottom: 0.4rem;">New Client Registration</span>
+        <h2 class="editorial-heading" style="font-size: 2.2rem; text-align: center; color: #fff; margin-bottom: 0.5rem; letter-spacing: 1px;">Join Maison Rouge</h2>
+        <p style="text-align: center; color: rgba(255,255,255,0.6); font-size: 0.88rem; margin-bottom: 1.8rem;">Create your profile for personal floral consultations.</p>
+
+        <div id="signup-error-msg" style="display: none; background: rgba(229, 62, 62, 0.2); color: #feb2b2; padding: 0.8rem; border-radius: 4px; font-size: 0.85rem; margin-bottom: 1rem; border: 1px solid rgba(229, 62, 62, 0.4);"></div>
+
+        <form id="maison-signup-form">
+          <div style="margin-bottom: 1rem;">
+            <label style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.7);">Full Name</label>
+            <input type="text" id="signup-fullname" class="maison-input" placeholder="e.g. Kasun Perera" required>
+          </div>
+
+          <div style="margin-bottom: 1rem;">
+            <label style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.7);">Email Address</label>
+            <input type="email" id="signup-email" class="maison-input" placeholder="name@example.com" required>
+          </div>
+
+          <div style="margin-bottom: 1.5rem;">
+            <label style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(255,255,255,0.7);">Create Password</label>
+            <input type="password" id="signup-password" class="maison-input" placeholder="At least 6 characters" required>
+          </div>
+
+          <button type="submit" id="btn-signup-submit" class="maison-btn maison-btn-gold" style="width: 100%; padding: 0.95rem; font-size: 0.85rem;">
+            Create Client Account
+          </button>
+        </form>
+
+        <div style="margin-top: 1.8rem; text-align: center; font-size: 0.85rem; color: rgba(255,255,255,0.6);">
+          Already have an account? 
+          <a href="javascript:void(0)" id="toggle-to-login" style="color: var(--gold-accent); text-decoration: underline; font-weight: 500; margin-left: 4px;">
+            Log in here
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Philosophy Section -->
+  <section id="philosophy" class="maison-section">
+    <div class="philosophy-grid">
+      <div>
+        <span class="sub-tag">Philosophy</span>
+        <h2 class="editorial-heading" style="font-size: 3rem; margin-bottom: 1.5rem; line-height: 1.15;">
+          Flowers as Architecture
+        </h2>
+        <a href="index.html" class="maison-btn">Discover Our Story →</a>
+      </div>
+
+      <div>
+        <blockquote class="philosophy-quote">
+          "Each bouquet is designed to be remembered long after the moment has passed."
+        </blockquote>
+        <p style="margin-top: 1.5rem; color: rgba(255,255,255,0.7); line-height: 1.7; font-weight: 300;">
+          Inspired by timeless floristry and contemporary design, Maison Rouge creates bouquets that feel like sculptural statements. Each arrangement is made by hand, crafted to be remembered long after the moment has passed.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Collections Grid Section -->
+  <section id="collections" class="maison-section" style="background: var(--bg-dark-burgundy);">
+    <span class="sub-tag">Collections</span>
+    <h2 class="editorial-heading" style="font-size: 3rem; margin-bottom: 2.5rem;">
+      Bouquets that Stay with You
+    </h2>
+
+    <div class="collections-grid">
+      <!-- Collection Card 1 -->
+      <div class="collection-card">
+        <img src="assets/images/dark_red_roses.jpg" alt="The Rose Edit">
+        <div class="collection-overlay">
+          <span style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: var(--gold-accent);">Single Variety</span>
+          <h3 class="editorial-heading" style="font-size: 1.5rem; color: #fff; margin: 0.3rem 0;">The Rose Edit</h3>
+          <p style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Timeless romance in deep velvet crimson.</p>
+        </div>
+      </div>
+
+      <!-- Collection Card 2 -->
+      <div class="collection-card">
+        <img src="assets/images/white_ranunculus.jpg" alt="Blanc Rouge">
+        <div class="collection-overlay">
+          <span style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: var(--gold-accent);">Sculptural</span>
+          <h3 class="editorial-heading" style="font-size: 1.5rem; color: #fff; margin: 0.3rem 0;">Blanc Rouge</h3>
+          <p style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Pure elegance & architectural layers.</p>
+        </div>
+      </div>
+
+      <!-- Collection Card 3 -->
+      <div class="collection-card">
+        <img src="assets/images/signature_bouquet.jpg" alt="Special Occasions">
+        <div class="collection-overlay">
+          <span style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: var(--gold-accent);">Atelier Special</span>
+          <h3 class="editorial-heading" style="font-size: 1.5rem; color: #fff; margin: 0.3rem 0;">Special Occasions</h3>
+          <p style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Midnight mood & grand celebrations.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 3.5rem;">
+      <a href="index.html" class="maison-btn">View All Collections →</a>
+    </div>
+  </section>
+
+  <!-- Signature Banner Section -->
+  <section id="signature" class="signature-banner">
+    <div class="signature-content">
+      <span class="sub-tag" style="color: var(--gold-accent);">Signature Bouquets</span>
+      <h2 class="editorial-heading" style="font-size: 3.2rem; color: #fff; margin: 0.8rem 0 1.5rem 0;">
+        The Bouquet Edit
+      </h2>
+      <a href="index.html" class="maison-btn maison-btn-gold">Shop Now →</a>
+    </div>
+  </section>
+
+  <!-- Editorial Footer -->
+  <footer style="background: #120103; padding: 3rem; text-align: center; color: rgba(255,255,255,0.5); border-top: 1px solid rgba(255,255,255,0.08);">
+    <p style="font-family: 'Bodoni Moda', serif; font-size: 1.4rem; color: #fff; margin-bottom: 0.8rem;">Maison Rouge • Floral Atelier</p>
+    <p style="font-size: 0.85rem;">&copy; 2026 Maison Rouge Atelier. All rights reserved.</p>
+  </footer>
+
+  <!-- Scripts for Auth Logic & Toggle -->
+  <script type="module">
+    import { Auth } from './js/auth.js';
+    import { Cart } from './js/app.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      Auth.updateNavUI();
+      Cart.updateCartBadge();
+
+      const loginView = document.getElementById('login-view');
+      const signupView = document.getElementById('signup-view');
+      const toggleToSignup = document.getElementById('toggle-to-signup');
+      const toggleToLogin = document.getElementById('toggle-to-login');
+
+      const loginForm = document.getElementById('maison-login-form');
+      const signupForm = document.getElementById('maison-signup-form');
+      const loginErr = document.getElementById('login-error-msg');
+      const signupErr = document.getElementById('signup-error-msg');
+
+      // Toggle views
+      toggleToSignup.addEventListener('click', () => {
+        loginView.style.display = 'none';
+        signupView.style.display = 'block';
+      });
+
+      toggleToLogin.addEventListener('click', () => {
+        signupView.style.display = 'none';
+        loginView.style.display = 'block';
+      });
+
+      // Handle Login Form Submit
+      loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        loginErr.style.display = 'none';
+
+        const username = document.getElementById('login-username').value;
+        const password = document.getElementById('login-password').value;
+
+        const res = Auth.login(username, password);
+        if (res.success) {
+          alert(`Welcome back to Maison Rouge, ${res.user.name}!`);
+          window.location.href = 'index.html';
+        } else {
+          loginErr.textContent = res.message;
+          loginErr.style.display = 'block';
+        }
+      });
+
+      // Handle Sign Up Form Submit - Redirects to Login view with credentials filled
+      signupForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        signupErr.style.display = 'none';
+
+        const name = document.getElementById('signup-fullname').value;
+        const email = document.getElementById('signup-email').value;
+        const password = document.getElementById('signup-password').value;
+
+        const res = Auth.register(name, email, password);
+        if (res.success) {
+          alert(`Account successfully created for ${name}! Please log in with your new email and password.`);
+          
+          signupView.style.display = 'none';
+          loginView.style.display = 'block';
+
+          document.getElementById('login-username').value = email;
+          document.getElementById('login-password').value = password;
+        } else {
+          signupErr.textContent = res.message;
+          signupErr.style.display = 'block';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
