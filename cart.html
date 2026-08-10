@@ -69,9 +69,52 @@
           <span id="total-val">$0.00</span>
         </div>
 
+        <!-- Payment Method Selection -->
+        <div class="payment-method-section" style="margin-top: 1.8rem; padding-top: 1.2rem; border-top: 1px solid rgba(212, 175, 55, 0.3);">
+          <h4 style="font-size: 1.1rem; color: var(--gold-accent); margin-bottom: 1rem; font-family: 'Bodoni Moda', serif;">Select Payment Method</h4>
+          
+          <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+            <!-- Card Option -->
+            <label class="payment-option-label" style="display: flex; align-items: center; gap: 0.8rem; padding: 0.9rem 1rem; background: rgba(0,0,0,0.3); border: 1px solid var(--gold-accent); border-radius: 8px; cursor: pointer; transition: all 0.2s ease;">
+              <input type="radio" name="payment-method" id="pay-card-radio" value="card" checked style="accent-color: var(--gold-accent); transform: scale(1.2);">
+              <div>
+                <strong style="display: block; font-size: 0.95rem; color: #fff;">💳 Card Payment</strong>
+                <span style="font-size: 0.8rem; color: rgba(255,255,255,0.7);">Credit / Debit Card (Visa, Mastercard, AMEX)</span>
+              </div>
+            </label>
+
+            <!-- Card Details Fields Box -->
+            <div id="card-fields" style="display: block; background: rgba(28, 1, 4, 0.9); padding: 1rem; border-radius: 8px; border: 1px dashed rgba(212,175,55,0.4); margin-top: 0.2rem;">
+              <div style="margin-bottom: 0.8rem;">
+                <label style="display: block; font-size: 0.75rem; color: var(--gold-accent); margin-bottom: 0.3rem; letter-spacing: 1px;">CARD NUMBER</label>
+                <input type="text" id="card-number" placeholder="4532 •••• •••• 8892" maxlength="19" style="width: 100%; padding: 0.6rem 0.8rem; background: #120103; border: 1px solid rgba(212, 175, 55, 0.4); color: #fff; border-radius: 6px; font-size: 0.9rem; outline: none;">
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem;">
+                <div>
+                  <label style="display: block; font-size: 0.75rem; color: var(--gold-accent); margin-bottom: 0.3rem; letter-spacing: 1px;">EXPIRY DATE</label>
+                  <input type="text" id="card-expiry" placeholder="MM/YY" maxlength="5" style="width: 100%; padding: 0.6rem 0.8rem; background: #120103; border: 1px solid rgba(212, 175, 55, 0.4); color: #fff; border-radius: 6px; font-size: 0.9rem; outline: none;">
+                </div>
+                <div>
+                  <label style="display: block; font-size: 0.75rem; color: var(--gold-accent); margin-bottom: 0.3rem; letter-spacing: 1px;">CVV CODE</label>
+                  <input type="password" id="card-cvv" placeholder="•••" maxlength="4" style="width: 100%; padding: 0.6rem 0.8rem; background: #120103; border: 1px solid rgba(212, 175, 55, 0.4); color: #fff; border-radius: 6px; font-size: 0.9rem; outline: none;">
+                </div>
+              </div>
+            </div>
+
+            <!-- Cash Option -->
+            <label class="payment-option-label" style="display: flex; align-items: center; gap: 0.8rem; padding: 0.9rem 1rem; background: rgba(0,0,0,0.3); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 8px; cursor: pointer; transition: all 0.2s ease;">
+              <input type="radio" name="payment-method" id="pay-cash-radio" value="cash" style="accent-color: var(--gold-accent); transform: scale(1.2);">
+              <div>
+                <strong style="display: block; font-size: 0.95rem; color: #fff;">💵 Cash Payment</strong>
+                <span style="font-size: 0.8rem; color: rgba(255,255,255,0.7);">Pay cash upon delivery at your doorstep (COD)</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
         <div style="margin-top: 1.5rem;">
-          <button id="checkout-btn" class="btn btn-primary" style="width: 100%; padding: 0.9rem;">
-            Proceed to Checkout 💳
+          <button id="checkout-btn" class="btn btn-primary" style="width: 100%; padding: 0.95rem; font-size: 1rem; font-weight: 600; background: var(--gold-accent); color: #1a0104; border: none; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;">
+            Proceed with Card Payment 💳
           </button>
         </div>
       </div>
@@ -176,6 +219,32 @@
 
       renderCart();
 
+      // Payment option toggle logic
+      const cardRadio = document.getElementById('pay-card-radio');
+      const cashRadio = document.getElementById('pay-cash-radio');
+      const cardFields = document.getElementById('card-fields');
+      const checkoutBtn = document.getElementById('checkout-btn');
+      const optionLabels = document.querySelectorAll('.payment-option-label');
+
+      function updatePaymentMethodUI() {
+        if (cardRadio && cardRadio.checked) {
+          cardFields.style.display = 'block';
+          checkoutBtn.innerHTML = 'Proceed with Card Payment 💳';
+          if(optionLabels[0]) optionLabels[0].style.borderColor = 'var(--gold-accent)';
+          if(optionLabels[1]) optionLabels[1].style.borderColor = 'rgba(212, 175, 55, 0.3)';
+        } else if (cashRadio) {
+          cardFields.style.display = 'none';
+          checkoutBtn.innerHTML = 'Place Order with Cash 💵';
+          if(optionLabels[0]) optionLabels[0].style.borderColor = 'rgba(212, 175, 55, 0.3)';
+          if(optionLabels[1]) optionLabels[1].style.borderColor = 'var(--gold-accent)';
+        }
+      }
+
+      if (cardRadio && cashRadio) {
+        cardRadio.addEventListener('change', updatePaymentMethodUI);
+        cashRadio.addEventListener('change', updatePaymentMethodUI);
+      }
+
       // Checkout handler
       document.getElementById('checkout-btn').addEventListener('click', () => {
         const cart = Cart.getCart();
@@ -192,13 +261,32 @@
           return;
         }
 
+        const isCard = cardRadio ? cardRadio.checked : true;
+        let paymentTypeLabel = "Card Payment 💳";
+        let cardMaskedDetails = "";
+
+        if (isCard) {
+          const cardNumInput = document.getElementById('card-number');
+          const cardNum = cardNumInput ? cardNumInput.value.trim() : "";
+
+          const last4 = cardNum.length >= 4 ? cardNum.slice(-4) : "8892";
+          paymentTypeLabel = "Credit / Debit Card 💳";
+          cardMaskedDetails = `Visa / Mastercard (•••• ${last4})`;
+        } else {
+          paymentTypeLabel = "Cash Payment 💵";
+          cardMaskedDetails = "Cash on Delivery (Pay upon doorstep arrival)";
+        }
+
         // Store active order and redirect to success page
         const orderSummary = {
           orderId: "ORD-" + Math.floor(100000 + Math.random() * 900000),
           user: user,
           items: cart,
           date: new Date().toLocaleDateString(),
-          total: document.getElementById('total-val').textContent
+          total: document.getElementById('total-val').textContent,
+          paymentMethod: paymentTypeLabel,
+          paymentDetails: cardMaskedDetails,
+          isCash: !isCard
         };
 
         localStorage.setItem('last_order', JSON.stringify(orderSummary));
