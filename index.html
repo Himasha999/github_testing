@@ -897,7 +897,13 @@
       document.querySelectorAll('.add-item-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
           const id = parseInt(e.target.dataset.id);
-          Cart.addItem(id);
+          const name = e.target.dataset.name;
+          const price = parseFloat(e.target.dataset.price);
+          if (name && price) {
+            Cart.addItem({ id, name, price, description: 'Exclusive Atelier Collection', image: '' });
+          } else {
+            Cart.addItem(id);
+          }
         });
       });
 

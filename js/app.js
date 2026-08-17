@@ -17,21 +17,108 @@ export const Cart = {
     this.updateCartBadge();
   },
 
-  addItem: async function(flowerId) {
-    const flower = await FlowerAPI.getFlowerById(flowerId);
+  showVerificationModal: function(flowerItem, onConfirm) {
+    const existingModal = document.getElementById('cart-verify-modal');
+    if (existingModal) existingModal.remove();
+
+    const modalOverlay = document.createElement('div');
+    modalOverlay.id = 'cart-verify-modal';
+    modalOverlay.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      animation: fadeIn 0.25s ease-in-out;
+    `;
+
+    modalOverlay.innerHTML = `
+      <div style="
+        background: #1e0508;
+        border: 1px solid rgba(212, 175, 55, 0.4);
+        border-radius: 16px;
+        padding: 2.2rem 2rem;
+        max-width: 440px;
+        width: 90%;
+        color: #fff;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        text-align: center;
+        transform: scale(0.95);
+      ">
+        <div style="font-size: 3rem; margin-bottom: 0.5rem; color: #d4af37;">🛒</div>
+        <h3 style="margin-top: 0; margin-bottom: 0.5rem; font-size: 1.6rem; color: #fff; font-family: 'Playfair Display', serif;">Confirm Order</h3>
+        <p style="font-family: sans-serif; font-size: 0.95rem; color: rgba(255,255,255,0.8); margin-bottom: 1.8rem; line-height: 1.5;">
+          Are you sure you want to add <strong style="color: #d4af37;">"${flowerItem.name}"</strong> ($${parseFloat(flowerItem.price).toFixed(2)}) to your shopping cart?
+        </p>
+        <div style="display: flex; gap: 1rem; justify-content: center;">
+          <button id="cart-cancel-btn" style="
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #fff;
+            padding: 0.7rem 1.4rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: sans-serif;
+          ">Cancel</button>
+          <button id="cart-confirm-btn" style="
+            background: linear-gradient(135deg, #d4af37, #aa820a);
+            border: none;
+            color: #000;
+            padding: 0.7rem 1.6rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            font-family: sans-serif;
+          ">Yes, Add to Cart</button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(modalOverlay);
+
+    const closeModal = () => modalOverlay.remove();
+
+    document.getElementById('cart-cancel-btn').addEventListener('click', closeModal);
+    document.getElementById('cart-confirm-btn').addEventListener('click', () => {
+      closeModal();
+      onConfirm();
+    });
+
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) closeModal();
+    });
+  },
+
+  addItem: async function(flowerItem) {
+    let flower;
+    if (typeof flowerItem === 'object') {
+      flower = flowerItem;
+    } else {
+      flower = await FlowerAPI.getFlowerById(flowerItem);
+    }
     if (!flower) return;
 
-    let cart = this.getCart();
-    const existingIndex = cart.findIndex(item => item.id === flower.id);
+    this.showVerificationModal(flower, () => {
+      let cart = this.getCart();
+      const existingIndex = cart.findIndex(item => item.id === flower.id);
 
-    if (existingIndex > -1) {
-      cart[existingIndex].quantity += 1;
-    } else {
-      cart.push({ ...flower, quantity: 1 });
-    }
+      if (existingIndex > -1) {
+        cart[existingIndex].quantity += 1;
+      } else {
+        cart.push({ ...flower, quantity: 1 });
+      }
 
-    this.saveCart(cart);
-    this.showToast(`Added "${flower.name}" to cart!`);
+      this.saveCart(cart);
+      this.showToast(`Added "${flower.name}" to cart!`);
+    });
   },
 
   updateQuantity: function(flowerId, delta) {
